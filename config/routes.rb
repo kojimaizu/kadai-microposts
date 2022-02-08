@@ -5,19 +5,17 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
-  
-  
   get "signup", to: "users#new"
+  
   resources :users, only: [:index, :show, :create] do
     member do
       get :followings
       get :followers
-      get :micropostings
-      get :microposters
+      get :likes  #投稿一覧ページを表示させるアクション
     end
   end
   
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :favorites, only: [:create, :destroy, :index]
+  resources :favorites, only: [:create, :destroy] #お気に入り出来る様にするルーティング
 end
