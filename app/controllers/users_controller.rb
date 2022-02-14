@@ -29,13 +29,13 @@ class UsersController < ApplicationController
   end
 
   def followings
-    @user = User.find(params[:id])
+    @user = User.find(params[:id])  #インスタンス変数=Model.find(params[:カラム名])
     @pagy, @followings = pagy(@user.followings)
     counts(@user)
   end
   
   def followers
-    @user = User.find(params[:id])
+    @user = User.find(params[:id])  #userテーブル内の指定したレコードからidカラムの値を取得して@userに代入する。（viewで使う為）
     @pagy, @followers = pagy(@user.followers)
     counts(@user)
   end
